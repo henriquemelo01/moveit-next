@@ -4,6 +4,7 @@ import Profile from "../components/Profile";
 import CompletedChallenges from "../components/CompletedChallenges";
 import Countdown from "../components/Countdown";
 import Head from "next/head";
+import ChallengeBox from "../components/ChallengeBox";
 
 // Essa página é criada pelo servidor do Next, que retorna o HTML,CSS,JS da nossa aplicação (Server side rendering)
 
@@ -20,7 +21,10 @@ export default function Home() {
           <CompletedChallenges />
           <Countdown />
         </div>
-        <div className={style.rightContainer}>
+        <div>
+          <ChallengeBox />
+        </div>
+        {/* <div className={style.rightContainer}>
           <strong>Inicie um ciclo para receber desafios</strong>
           <div
             style={{
@@ -34,7 +38,7 @@ export default function Home() {
             <img src="#" style={{ marginBottom: "2rem" }} />
             <p>Avance de level completando os desafios </p>
           </div>
-        </div>
+        </div> */}
       </section>
     </div>
   );
