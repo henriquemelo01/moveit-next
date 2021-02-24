@@ -1,0 +1,35 @@
+/* ExperienceBar.module.css => Definindo Estilos/classes que serão unicos para o componte  */
+
+.experienceBar {
+  display: flex;
+  align-items: center; /* centralizar os itens verticalemnte */
+}
+
+/* Estiliza todos os spans que estão dentro do header experience-bar */
+.experienceBar span {
+  font-size: 1rem;
+}
+
+/* Estiliza apenas as divs children do experience-bar, no caso como só há uma div, estilo se refere a primeira */
+.experienceBar > div {
+  flex: 1; /* div ocupar largura maxima do container*/
+  height: 4px; /* Tamanho fixo, por isso não foi colocado em rem*/
+  border-radius: 4px;
+  background: var(--gray-line);
+  margin: 0 1.5rem;
+  position: relative; /* Colocamos position relative para forçamos o position absolute do current-experience se mover em relação ao a esta div */
+}
+
+.experienceBar > div > div {
+  background-color: var(--green);
+  height: 4px;
+  border-radius: 4px;
+}
+
+span.currentExperience {
+  position: absolute; /* referencia experience-bar > div, para isso valor de um elemento pai deve ser diferente de static (padrão)*/
+  top: 12px;
+  transform: translateX(
+    -50% /* do elemento */
+  ); /* Ao utilizarmos left: 50% o elemento o inicio do elemento é deslocado 50% da div, assim utiliza-se translateX para corrigir o posicionamento, deslocando a metade dele para esquerda  */
+}
