@@ -77,3 +77,13 @@
   border-bottom: solid 5px var(--green);
   cursor: not-allowed; /* É um adicionado um estilo de não permitido o click ao cursor*/
 }
+
+.icon {
+  margin-left: 1rem;
+}
+
+/* Ciclo encerrado icon */
+.btnCountdown:disabled .icon {
+  color: var(--green);
+  font-size: 1.2rem;
+}

@@ -24,21 +24,6 @@ export default function Home() {
         <div>
           <ChallengeBox />
         </div>
-        {/* <div className={style.rightContainer}>
-          <strong>Inicie um ciclo para receber desafios</strong>
-          <div
-            style={{
-              marginTop: "5rem",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <img src="#" style={{ marginBottom: "2rem" }} />
-            <p>Avance de level completando os desafios </p>
-          </div>
-        </div> */}
       </section>
     </div>
   );

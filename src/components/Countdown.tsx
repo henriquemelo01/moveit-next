@@ -1,13 +1,19 @@
 import style from "../styles/components/Countdown.module.css";
-import { useState, useEffect } from "react";
-import { start } from "repl";
+import { useState, useEffect, useContext } from "react";
+import { ChallengesContext } from "../contexts/ChallengesContext";
+import { MdClose } from "react-icons/md";
+import { BsFillPlayFill } from "react-icons/bs";
+import { AiFillCheckCircle } from "react-icons/ai";
 
 // Tipagem global, variavel foi definida para podemos resetar o countdown fora do escopo do startCountdown()
 let countdownTimeout: NodeJS.Timeout;
 
 export default function Countdown() {
+  // Context Data:
+  const { startNewChallenge } = useContext(ChallengesContext);
+
   const [time, setTime] = useState(0.1 * 60);
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(false); // false
   const [hasFinished, setHasFinished] = useState(false);
 
   const minutes = Math.floor(time / 60); // Math.floor arredonda para baixo
@@ -36,6 +42,7 @@ export default function Countdown() {
       }, 1000);
     } else if (isActive && time === 0) {
       setHasFinished(true);
+      startNewChallenge();
     }
   }, [isActive, time]); // Como time muda a cada 1 segundo a função é disparada a cada segundo, até que time pare de mudar.
 
@@ -55,6 +62,7 @@ export default function Countdown() {
       {hasFinished ? (
         <button disabled className={style.btnCountdown}>
           Ciclo encerrado
+          <AiFillCheckCircle className={style.icon} />
         </button>
       ) : (
         <>
@@ -63,11 +71,13 @@ export default function Countdown() {
               className={`${style.btnCountdown} ${style.btnCountdownActive}`}
               onClick={resetCountdown}
             >
-              Abandonar
+              Abandonar ciclo
+              <MdClose className={style.icon} />
             </button>
           ) : (
             <button className={style.btnCountdown} onClick={startCountdown}>
               Iniciar um ciclo
+              <BsFillPlayFill className={style.icon} />
             </button>
           )}
         </>

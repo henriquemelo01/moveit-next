@@ -1,30 +1,38 @@
+import { useState, useContext } from "react";
+import { ChallengesContext } from "../contexts/ChallengesContext";
 import style from "../styles/components/ChallengeBox.module.css";
-import { useState } from "react";
 
 export default function ChallengeBox() {
   const [hasActiveChallenge, setHasActiveChallenge] = useState(true); // Começa com false, após o termino da contagem é setado para true
 
+  // Context Data:
+  const { activeChallenge, resetChallenge } = useContext(ChallengesContext);
+
   return (
     <div className={style.challengeBoxContainer}>
-      {hasActiveChallenge ? (
+      {activeChallenge ? (
         <div className={style.challengeActive}>
-          <header>Ganhe 400 xp</header>
+          <header>Ganhe {activeChallenge.amount} xp</header>
 
           <main>
-            <img src="icons/body.svg" alt="exercise icon" />
+            <img
+              src={`icons/${activeChallenge.type}.svg`}
+              alt="exercise icon"
+            />
             <strong>Novo Desafio</strong>
-            <p>
-              Vamo la Cazzo !! Vá até o Minas, nade borboleta durante 30
-              minutos, em seguida volte correndo para casa e jogue um Codzin{" "}
-            </p>
+            <p>{activeChallenge.description}</p>
           </main>
 
           <footer>
-            <button type="button" className={style.challengeFailedButton}>
-              Aceitar
+            <button
+              type="button"
+              className={style.challengeFailedButton}
+              onClick={resetChallenge}
+            >
+              Falhei
             </button>
             <button type="button" className={style.challengeSucceededButton}>
-              Recusar
+              Completei
             </button>
           </footer>
         </div>
