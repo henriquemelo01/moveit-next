@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import challenges from "../../challenges.json";
 
 /*
@@ -47,15 +47,29 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
   // Calculo baseado na passagem de nível de um RPG
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
+  // Função é chamada toda vez que o componente (ChallengesContextProvider) é montado na tela - did mount (life cycle do componente)
+  useEffect(() => {
+    // API do browser
+    Notification.requestPermission();
+  }, []);
+
   function levelUp() {
     setLevel(level + 1);
   }
 
   function startNewChallenge() {
-    console.log("Start new Challenge");
     const randomChallengeIndex = Math.floor(Math.random() * challenges.length);
     const challenge = challenges[randomChallengeIndex];
     setActiveChallenge(challenge);
+
+    // Audio API  do browser
+    new Audio("/notification.mp3").play();
+
+    if (Notification.permission === "granted") {
+      new Notification("Novo desafio disponível ⏰", {
+        body: `Valendo ${challenge.amount} XP`,
+      });
+    }
   }
 
   function resetChallenge() {
