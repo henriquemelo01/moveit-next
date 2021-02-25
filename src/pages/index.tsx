@@ -5,6 +5,7 @@ import CompletedChallenges from "../components/CompletedChallenges";
 import Countdown from "../components/Countdown";
 import Head from "next/head";
 import ChallengeBox from "../components/ChallengeBox";
+import { CountdownProvider } from "../contexts/CountdownContext";
 
 // Essa página é criada pelo servidor do Next, que retorna o HTML,CSS,JS da nossa aplicação (Server side rendering)
 
@@ -15,16 +16,18 @@ export default function Home() {
         <title>Inicio | move.it</title>
       </Head>
       <ExperienceBar />
-      <section>
-        <div className={style.leftContainer}>
-          <Profile />
-          <CompletedChallenges />
-          <Countdown />
-        </div>
-        <div>
-          <ChallengeBox />
-        </div>
-      </section>
+      <CountdownProvider>
+        <section>
+          <div className={style.leftContainer}>
+            <Profile />
+            <CompletedChallenges />
+            <Countdown />
+          </div>
+          <div>
+            <ChallengeBox />
+          </div>
+        </section>
+      </CountdownProvider>
     </div>
   );
 }

@@ -23,6 +23,7 @@ interface ChallengesContextDataProps {
   };
   resetChallenge: () => void;
   experienceToNextLevel: number;
+  completedChallenge: () => void;
 }
 
 // Instancia um Componente que tem o metodo provider
@@ -61,6 +62,24 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
     setActiveChallenge(null);
   }
 
+  function completedChallenge() {
+    if (!activeChallenge) return;
+
+    // A propriedade amount do JSON armazena quanto um desafio da de experiencia
+    const { amount } = activeChallenge;
+
+    let finalExperience = amount + currentExperience;
+
+    if (finalExperience >= experienceToNextLevel) {
+      finalExperience = finalExperience - experienceToNextLevel;
+      levelUp();
+    }
+
+    setCurrentExperience(finalExperience);
+    resetChallenge();
+    setChallengesCompleted(challengesCompleted + 1);
+  }
+
   return (
     <ChallengesContext.Provider
       value={{
@@ -72,6 +91,7 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
         activeChallenge,
         resetChallenge,
         experienceToNextLevel,
+        completedChallenge,
       }}
     >
       {children}

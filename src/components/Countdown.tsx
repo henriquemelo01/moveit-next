@@ -1,50 +1,29 @@
 import style from "../styles/components/Countdown.module.css";
-import { useState, useEffect, useContext } from "react";
-import { ChallengesContext } from "../contexts/ChallengesContext";
+import { useContext } from "react";
 import { MdClose } from "react-icons/md";
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiFillCheckCircle } from "react-icons/ai";
+import { CountdownContext } from "../contexts/CountdownContext";
 
 // Tipagem global, variavel foi definida para podemos resetar o countdown fora do escopo do startCountdown()
 let countdownTimeout: NodeJS.Timeout;
 
 export default function Countdown() {
   // Context Data:
-  const { startNewChallenge } = useContext(ChallengesContext);
+  const {
+    minutes,
+    seconds,
+    isActive,
+    hasFinished,
+    startCountdown,
+    resetCountdown,
+  } = useContext(CountdownContext);
 
-  const [time, setTime] = useState(0.1 * 60);
-  const [isActive, setIsActive] = useState(false); // false
-  const [hasFinished, setHasFinished] = useState(false);
-
-  const minutes = Math.floor(time / 60); // Math.floor arredonda para baixo
-  const seconds = time % 60;
+  // OBS: A formatação não faz parte da regra de negocio, ou seja, ela não faz parte de como a aplicação funciona em si, mas como é visualizada. Só faz parte do componente Countdown em sí
 
   // .padStart(2,"0") -> verifica se a string tem dois caracteres, se não tive coloca 0 a esquerda
   const [minuteLeft, minuteRight] = String(minutes).padStart(2, "0").split(""); // .split("") retorna um array com cada caracter da string
   const [secondLeft, secondRight] = String(seconds).padStart(2, "0").split("");
-
-  // Countdown Functions
-  const startCountdown = function () {
-    setIsActive(true);
-  };
-
-  const resetCountdown = function () {
-    setIsActive(false);
-    clearTimeout(countdownTimeout);
-    setTime(0.1 * 60);
-  };
-
-  // Toda vez que o valor de active mudar executa a função.
-  useEffect(() => {
-    if (isActive && time > 0) {
-      countdownTimeout = setTimeout(() => {
-        setTime(time - 1);
-      }, 1000);
-    } else if (isActive && time === 0) {
-      setHasFinished(true);
-      startNewChallenge();
-    }
-  }, [isActive, time]); // Como time muda a cada 1 segundo a função é disparada a cada segundo, até que time pare de mudar.
 
   return (
     <div>
