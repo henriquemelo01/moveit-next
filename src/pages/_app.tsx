@@ -14,11 +14,7 @@ Como o CountdownProvider precisa de informações do Challenges provider para o 
 */
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <ChallengesProvider>
-      <Component {...pageProps} />
-    </ChallengesProvider>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;

@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import challenges from "../../challenges.json";
 import Cookies from "js-cookie";
+import { LevelUpModal } from "../components/LevelUpModal";
 
 /*
 Contexto: Armazena todas as variaveis,funções que desejamos acessa-las por meio dos componentes da aplicação. O contexto permite o compartilhamento de informações entre componentes através da context api do react
@@ -25,6 +26,7 @@ interface ChallengesContextDataProps {
   resetChallenge: () => void;
   experienceToNextLevel: number;
   completedChallenge: () => void;
+  closeLevelUpModal: () => void;
 }
 
 // Instancia um Componente que tem o metodo provider
@@ -35,15 +37,26 @@ export const ChallengesContext = createContext(
 // Definindo a tipagem das propriedas que serão passadas como parâmetro ao contexto, a fim de deixarmos a IDE mais inteligente.
 interface ChallengesProviderProps {
   children: ReactNode /* Tipagem que indica que a propriedade recebe um elemento jsx */;
+  Level: number;
+  currentExperience: number;
+  challengesCompleted: number;
 }
 
 // Componente que estabelece o contexto
-export function ChallengesProvider({ children }: ChallengesProviderProps) {
+export function ChallengesProvider({
+  children,
+  ...rest
+}: ChallengesProviderProps) {
   //  Dados que desejamos compartilhar com os componentes
-  const [level, setLevel] = useState(1);
-  const [currentExperience, setCurrentExperience] = useState(0);
-  const [challengesCompleted, setChallengesCompleted] = useState(0);
+  const [level, setLevel] = useState(rest.Level ?? 1);
+  const [currentExperience, setCurrentExperience] = useState(
+    rest.currentExperience ?? 0
+  );
+  const [challengesCompleted, setChallengesCompleted] = useState(
+    rest.challengesCompleted ?? 0
+  );
   const [activeChallenge, setActiveChallenge] = useState(null);
+  const [statusModalLevelUp, setStatusModalLevelUp] = useState(false); // Abri quando o usuario sobe de nível
 
   // Calculo baseado na passagem de nível de um RPG
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
@@ -80,6 +93,12 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
 
   function levelUp() {
     setLevel(level + 1);
+    // Setar variável que vai abrir o modal
+    setStatusModalLevelUp(true);
+  }
+
+  function closeLevelUpModal() {
+    setStatusModalLevelUp(false);
   }
 
   function startNewChallenge() {
@@ -131,9 +150,12 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
         resetChallenge,
         experienceToNextLevel,
         completedChallenge,
+        closeLevelUpModal,
       }}
     >
       {children}
+
+      {statusModalLevelUp === true && <LevelUpModal />}
     </ChallengesContext.Provider>
   );
 }

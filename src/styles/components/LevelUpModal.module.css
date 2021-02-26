@@ -1,0 +1,85 @@
+.overlay {
+  position: fixed; /* não permite scroll*/
+  /* Config p/ ocupar toda tela */
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(242, 243, 245, 0.8);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modalContainer {
+  /*Container do Modal ocupar maximo de espaço */
+  width: 100%;
+
+  max-width: 450px; /* Limita container*/
+  padding-top: 2rem;
+  line-height: 1.8rem;
+
+  /* border: solid red 2px; */
+  background-color: var(--white);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  text-align: center;
+
+  /*Usado para posicionarmos o close button em relação ao container*/
+  position: relative;
+}
+
+.modalContainer header {
+  font-size: 8.75rem;
+  font-weight: 600;
+  color: var(--blue);
+  line-height: 10rem; /* retirar ? */
+  /* Imagem de fundo */
+  background: url("/icons/levelup.svg") no-repeat center;
+  /* background-size: contain; */
+}
+
+.modalContainer strong {
+  font-size: 1.88rem;
+  font-weight: 600;
+  color: var(--title);
+}
+
+.modalContainer p {
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.twitterButton {
+  margin-top: 1.8rem;
+  width: 100%;
+  height: 5rem;
+  background-color: transparent;
+  background-color: #f5fcff;
+  color: var(--blue-twitter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border: 1px solid #dcdde0;
+}
+
+.clearButton {
+  background: transparent; /* retirar visual padrão do botão*/
+  position: absolute; /* referencia: modalContainer  */
+  right: 1rem;
+  top: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.clearIcon {
+  font-size: 1.6rem;
+  color: var(--text);
+}
