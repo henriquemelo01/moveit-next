@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import challenges from "../../challenges.json";
+import Cookies from "js-cookie";
 
 /*
 Contexto: Armazena todas as variaveis,funções que desejamos acessa-las por meio dos componentes da aplicação. O contexto permite o compartilhamento de informações entre componentes através da context api do react
@@ -47,11 +48,35 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
   // Calculo baseado na passagem de nível de um RPG
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
+  // side Effect: Quando algo mudar/acontecer em nossa aplicação (dado), executar outra coisa...
+
   // Função é chamada toda vez que o componente (ChallengesContextProvider) é montado na tela - did mount (life cycle do componente)
   useEffect(() => {
     // API do browser
     Notification.requestPermission();
   }, []);
+
+  // Armazenando os dados nos cookies: O next não consegue ter acesso ao localstorage, uma vez que ele é uma api do browser, assim quando trabalhamos com o framework, normalmente, utiliza-se os cookies para armazenar dados locais.
+
+  /* Js Cookie -> API + amigavel para armazenar os cookies 
+
+      npm install js-cookie
+
+      OBS: Como a lib foi escrita em js puro, se trabalharmos com o typescript é necessário instalar as dependencias, a fim de sabermos quais os metodos/propiedades que existem na lib, uma vez que ela não apresenta os tipos dessas propriedades, assim o typescript não as reconhece.
+
+      Rep com as tipagens da maioria das libs do npm:
+      https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react
+
+      npm install @types/js-cookie -D
+
+  */
+
+  useEffect(() => {
+    // Armazena dados nos cookies, toda vez que o valor de uma das variaveis mudar - component did update
+    Cookies.set("Level", String(level));
+    Cookies.set("currentExperience", String(currentExperience));
+    Cookies.set("challengesCompleted", String(challengesCompleted));
+  }, [level, currentExperience, challengesCompleted]);
 
   function levelUp() {
     setLevel(level + 1);
