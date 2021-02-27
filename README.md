@@ -1,3 +1,12 @@
+## Overview
+
+<h1 align = "center" > <b> Moveit ⏱</b> </h1>
+
+<div >
+    <h2>👀<b>Overview</b></h2><br>
+    <img src = "moveit-gif.gif" align = "center">
+</div>
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -32,3 +41,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+```bash
+# First deploy
+
+# Go to the project folder and execute the next command
+vercel
+
+# If you already deploy, changed the project files and would like to reedeploy execute the next command:
+vercel --prod
+```

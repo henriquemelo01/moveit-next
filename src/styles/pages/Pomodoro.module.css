@@ -1,0 +1,23 @@
+/* Estilos de classes que vamos ter na pagina home(index.tsx) */
+
+.container {
+  height: 100vh; /* Container ocupa todo o view height*/
+  max-width: 992px;
+  padding: 2.5rem 2rem;
+  margin: 0 auto; /* Alinha tudo ao centro */
+  display: flex;
+  flex-direction: column; /*Container contem todos os componentes da nossa aplicação, utiliza-se flex-direction: colum para colocarmos um abaixo do outro ; */
+}
+
+.container section {
+  margin-top: 3.5rem; /* Eu coloquei ***** */
+  flex: 1; /* forçar section ocupar todo container  */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Definindo duas colunas para section que ocupam o mesmo tamanho horizontal*/
+  gap: 6.25rem; /* Espaçamento entre as colunas */
+  align-content: center; /* Alinha todo conteudo do grid verticalmente em relação ao container*/
+}
+
+.leftContainer {
+  min-width: 19rem;
+}

@@ -1,65 +1,52 @@
-import style from "../styles/pages/Home.module.css";
-import ExperienceBar from "../components/ExperienceBar";
-import Profile from "../components/Profile";
-import CompletedChallenges from "../components/CompletedChallenges";
-import Countdown from "../components/Countdown";
-import Head from "next/head";
-import ChallengeBox from "../components/ChallengeBox";
-import { CountdownProvider } from "../contexts/CountdownContext";
-import { GetServerSideProps } from "next";
-import { ChallengesProvider } from "../contexts/ChallengesContext";
+import styles from "../styles/pages/Home.module.css";
+import { AiFillGithub } from "react-icons/ai";
+import { MdNavigateNext } from "react-icons/md";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
-// Essa página é criada pelo servidor do Next, que retorna o HTML,CSS,JS da nossa aplicação (Server side rendering)
+export default function LandingPage() {
+  const [login, setLogin] = useState("");
+  const changeColor = login.length !== 0 ? `var(--green)` : `var(--blue-dark)`;
 
-interface HomeProps {
-  Level: number;
-  currentExperience: number;
-  challengesCompleted: number;
-}
-
-export default function Home(props) {
-  // console.log(props);
+  const router = useRouter();
   return (
-    <ChallengesProvider
-      Level={props.Level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
-    >
-      <div className={style.container}>
-        <Head>
-          <title>Inicio | move.it</title>
-        </Head>
-        <ExperienceBar />
-        <CountdownProvider>
-          <section>
-            <div className={style.leftContainer}>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
+    <div className={styles.body}>
+      <div className={styles.container}>
+        <img src="/logo-full.svg" />
+        <div>
+          <strong>Bem-vindo</strong>
+          <div className={styles.loginHeader}>
+            <AiFillGithub className={styles.gitHubIcon} />
+            <p>Faça login com seu GitHub para começar</p>
+          </div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              router.push("/pomodoro");
+            }}
+          >
+            <input
+              placeholder="Login"
+              type="username"
+              value={login}
+              onChange={(e) => setLogin(e.target.value)}
+            />
+            <button
+              style={{
+                transition: "background-color 0.6s",
+                backgroundColor: `${changeColor}`,
+              }}
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/pomodoro");
+              }}
+            >
+              <MdNavigateNext className={styles.nextIcon} />
+            </button>
+          </form>
+        </div>
       </div>
-    </ChallengesProvider>
+    </div>
   );
 }
-
-// Acesso ao app: O next roda um servidor Node (Back-end) que contém o front-end da aplicação, que é construido a partir do React, buscando os dados do Back-end. Quando é declarado a função abaixo, consiguimos manipular quais dados serão passados do Next para o Front-end (React). Assim, normalmente, utiliza-se a função getServerSideProps para fazermos uma chamada a API e possamos preencher a interface com estes dados
-
-// Antes de construir a interface chama a api, pega os dados, repassa para os componentes e ai ele mostra os dados em tela . A função é executada no servidor node
-
-// Mudar nome do "Level" armazenado no cookies para level
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { Level, currentExperience, challengesCompleted } = ctx.req.cookies;
-  return {
-    props: {
-      Level: Number(Level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted),
-    },
-  };
-};

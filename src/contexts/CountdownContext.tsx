@@ -36,7 +36,7 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
   // Challenge context Data: Como o useEffet utiliza o metodo startNewChallenge vindo do contexto, devemos "importa-lo"
   const { startNewChallenge } = useContext(ChallengesContext);
 
-  const [time, setTime] = useState(0.1 * 60);
+  const [time, setTime] = useState(25 * 60);
   const [isActive, setIsActive] = useState(false); // false
   const [hasFinished, setHasFinished] = useState(false);
 
@@ -52,7 +52,7 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
     setIsActive(false);
     setHasFinished(false); // coloquei agora
     clearTimeout(countdownTimeout);
-    setTime(0.1 * 60);
+    setTime(25 * 60);
   };
 
   // Toda vez que o valor de active mudar executa a função.

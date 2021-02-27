@@ -1,23 +1,100 @@
-/* Estilos de classes que vamos ter na pagina home(index.tsx) */
+.body {
+  height: 100vh;
+  background-color: var(--blue);
+  position: relative;
+}
 
 .container {
-  height: 100vh; /* Container ocupa todo o view height*/
-  max-width: 992px;
-  padding: 2.5rem 2rem;
-  margin: 0 auto; /* Alinha tudo ao centro */
+  /* border: solid red 2px; */
+  position: absolute;
+  top: 25%;
+  right: 20%;
   display: flex;
-  flex-direction: column; /*Container contem todos os componentes da nossa aplicação, utiliza-se flex-direction: colum para colocarmos um abaixo do outro ; */
+  flex-direction: column;
+
+  /* border: solid red 2px; */
 }
 
-.container section {
-  margin-top: 3.5rem; /* Eu coloquei ***** */
-  flex: 1; /* forçar section ocupar todo container  */
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Definindo duas colunas para section que ocupam o mesmo tamanho horizontal*/
-  gap: 6.25rem; /* Espaçamento entre as colunas */
-  align-content: center; /* Alinha todo conteudo do grid verticalmente em relação ao container*/
+.container > img {
+  margin-bottom: 4rem;
 }
 
-.leftContainer {
-  min-width: 19rem;
+/* Login  */
+.container > div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  padding-left: 8.5rem; /*Alinha com começo da imagem */
+}
+
+.container > div strong {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 2.875rem;
+  color: var(--white);
+}
+
+.loginHeader {
+  display: flex;
+  align-items: center;
+  color: #b2b9ff;
+  margin-bottom: 1.5rem;
+}
+
+.loginHeader p {
+  margin: 1rem;
+  max-width: 70%;
+  text-align: left;
+}
+
+.gitHubIcon {
+  font-size: 2.5rem;
+}
+
+.container div form {
+  display: flex;
+  align-items: center;
+}
+
+.container div form input {
+  background: linear-gradient(to right, var(--blue-dark), var(--blue));
+  height: 3.5rem;
+  border: none;
+  border-radius: 5px;
+  text-indent: 20px;
+  color: white;
+}
+
+.container div form input:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
+.container div form input::placeholder {
+  color: white;
+  font-weight: 600;
+}
+
+.container div form button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.5rem;
+  width: 3.5rem;
+  border: none;
+  background: var(--green);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 2.2rem;
+  transition: filter 0.25s;
+}
+
+.container div form button:hover {
+  filter: brightness(0.9);
+}
+
+.container div form button:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
 }
