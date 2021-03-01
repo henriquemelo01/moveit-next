@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import challenges from "../../challenges.json";
 import Cookies from "js-cookie";
 import { LevelUpModal } from "../components/LevelUpModal";

@@ -1,0 +1,38 @@
+.sideContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2rem 0;
+  align-items: center;
+  width: 5.5rem;
+  background: linear-gradient(to bottom, white, rgba(196, 193, 193, 0.534));
+  height: 100vh;
+}
+
+.sideContainer img {
+  /* position: relative; */
+  width: 3rem;
+  height: 2.6rem;
+  top: 1rem;
+  margin-bottom: 17.25rem;
+}
+
+.sideContainer button {
+  background: transparent;
+  border: none;
+  width: 2.4rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.icon {
+  width: 2rem;
+  height: 2rem;
+  /* margin-bottom: 1rem; */
+  color: var(--text);
+}

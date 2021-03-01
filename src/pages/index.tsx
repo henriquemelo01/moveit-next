@@ -2,7 +2,7 @@ import styles from "../styles/pages/Home.module.css";
 import { AiFillGithub } from "react-icons/ai";
 import { MdNavigateNext } from "react-icons/md";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 export default function LandingPage() {
   const [login, setLogin] = useState("");
@@ -36,6 +36,7 @@ export default function LandingPage() {
                 transition: "background-color 0.6s",
                 backgroundColor: `${changeColor}`,
               }}
+              disabled={login.length === 0 ? true : false}
               type="button"
               onClick={(e) => {
                 e.preventDefault();

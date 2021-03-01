@@ -9,6 +9,7 @@ import ChallengeBox from "../components/ChallengeBox";
 import { CountdownProvider } from "../contexts/CountdownContext";
 import { GetServerSideProps } from "next";
 import { ChallengesProvider } from "../contexts/ChallengesContext";
+import { SideBar } from "../components/SideBar";
 
 // Essa página é criada pelo servidor do Next, que retorna o HTML,CSS,JS da nossa aplicação (Server side rendering)
 
@@ -26,6 +27,7 @@ export default function Home(props) {
       currentExperience={props.currentExperience}
       challengesCompleted={props.challengesCompleted}
     >
+      <SideBar />
       <div className={style.container}>
         <Head>
           <title>Inicio | move.it</title>
