@@ -1,10 +1,13 @@
 import styles from "../styles/components/SideBar.module.css";
 import { AiOutlineHome } from "react-icons/ai";
 import { BiMedal } from "react-icons/bi";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SectionContext } from "../contexts/SectionContext";
 
 export function SideBar() {
   const [isActive, setIsActive] = useState([true, false]);
+  const { openPomodoroSection, openLeaderboard } = useContext(SectionContext);
+
   return (
     <aside className={styles.sideContainer}>
       {" "}
@@ -13,6 +16,7 @@ export function SideBar() {
         onClick={(e) => {
           e.preventDefault();
           setIsActive([true, false]);
+          openPomodoroSection();
         }}
       >
         {" "}
@@ -25,6 +29,7 @@ export function SideBar() {
         onClick={(e) => {
           e.preventDefault();
           setIsActive([false, true]);
+          openLeaderboard();
         }}
       >
         <BiMedal

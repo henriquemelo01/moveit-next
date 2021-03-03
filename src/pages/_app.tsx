@@ -1,5 +1,6 @@
 import "../styles/global.css";
 import { ChallengesProvider } from "../contexts/ChallengesContext";
+import { SectionProvider } from "../contexts/SectionContext"; // Só criei o section provider para passar informação de mudança de pag
 
 // Arquivo utilizado para aproveitarmos toda a estrutura previa de uma aplicação. Ex: Menu
 
@@ -14,7 +15,11 @@ Como o CountdownProvider precisa de informações do Challenges provider para o 
 */
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    <SectionProvider>
+      <Component {...pageProps} />
+    </SectionProvider>
+  );
 }
 
 export default MyApp;

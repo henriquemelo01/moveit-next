@@ -78,7 +78,7 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
         resetCountdown,
       }}
     >
-      {children}
+      {children} {/* Todos elementos que terão acesso ao context */}
     </CountdownContext.Provider>
   );
 }

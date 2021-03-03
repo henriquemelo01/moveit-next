@@ -8,21 +8,30 @@ import Head from "next/head";
 import ChallengeBox from "../components/ChallengeBox";
 import { CountdownProvider } from "../contexts/CountdownContext";
 import { GetServerSideProps } from "next";
-import { ChallengesProvider } from "../contexts/ChallengesContext";
+import {
+  ChallengesContext,
+  ChallengesProvider,
+} from "../contexts/ChallengesContext";
 import { SideBar } from "../components/SideBar";
+import { useContext, useState } from "react";
+import { SectionContext } from "../contexts/SectionContext";
+import { Leaderboard } from "../components/Leaderboard";
 
 // Essa página é criada pelo servidor do Next, que retorna o HTML,CSS,JS da nossa aplicação (Server side rendering)
 
 interface HomeProps {
+  username: string;
   Level: number;
   currentExperience: number;
   challengesCompleted: number;
 }
 
-export default function Home(props) {
-  // console.log(props);
+export default function Home(props: HomeProps) {
+  const { currentSection } = useContext(SectionContext); // "pomodoro" ou "leaderboard"
+  // Por que não esta conseguindo acessar o valor da variavel? Será que é porque a Home não esta dentro de challenges provider
   return (
     <ChallengesProvider
+      username={props.username}
       Level={props.Level}
       currentExperience={props.currentExperience}
       challengesCompleted={props.challengesCompleted}
@@ -30,22 +39,27 @@ export default function Home(props) {
       <div className={style.mainContainer}>
         <SideBar />
         <div className={style.container}>
-          <Head>
-            <title>Inicio | move.it</title>
-          </Head>
-          <ExperienceBar />
-          <CountdownProvider>
-            <section>
-              <div className={style.leftContainer}>
-                <Profile />
-                <CompletedChallenges />
-                <Countdown />
-              </div>
-              <div>
-                <ChallengeBox />
-              </div>
-            </section>
-          </CountdownProvider>
+          {currentSection === "pomodoro" && (
+            <div className="pomodoro">
+              <Head>
+                <title>Inicio | move.it</title>
+              </Head>
+              <ExperienceBar />
+              <CountdownProvider>
+                <section>
+                  <div className={style.leftContainer}>
+                    <Profile />
+                    <CompletedChallenges />
+                    <Countdown />
+                  </div>
+                  <div>
+                    <ChallengeBox />
+                  </div>
+                </section>
+              </CountdownProvider>
+            </div>
+          )}
+          {currentSection === "leaderboard" && <Leaderboard />}
         </div>
       </div>
     </ChallengesProvider>
@@ -59,9 +73,15 @@ export default function Home(props) {
 // Mudar nome do "Level" armazenado no cookies para level
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { Level, currentExperience, challengesCompleted } = ctx.req.cookies;
+  const {
+    Level,
+    currentExperience,
+    challengesCompleted,
+    username,
+  } = ctx.req.cookies;
   return {
     props: {
+      username,
       Level: Number(Level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),

@@ -1,0 +1,32 @@
+.leaderboardContainer {
+  /* border: solid red 2px; */
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.leaderboardContainer strong {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 2.88rem;
+  padding-right: 50rem;
+  color: var(--title);
+}
+
+.leaderboardContainer table {
+  background-color: rgb(10, 45, 61);
+}
+
+.leaderboardContainer table thead {
+  background-color: white;
+  font-size: 0.875rem;
+}
+
+.leaderboardContainer table tbody {
+  border-radius: 5px;
+  color: white;
+}
+
+.leaderboardContainer table tbody > tr > td {
+  text-align: center;
+}

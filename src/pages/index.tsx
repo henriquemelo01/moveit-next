@@ -3,6 +3,7 @@ import { AiFillGithub } from "react-icons/ai";
 import { MdNavigateNext } from "react-icons/md";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
+import Cookies from "js-cookie";
 
 export default function LandingPage() {
   const [login, setLogin] = useState("");
@@ -23,6 +24,7 @@ export default function LandingPage() {
             onSubmit={(e) => {
               e.preventDefault();
               router.push("/pomodoro");
+              Cookies.set("username", login);
             }}
           >
             <input

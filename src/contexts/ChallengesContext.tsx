@@ -18,7 +18,9 @@ OBS: A tipagem é utilizada quando passamos um parametro/atributo para o compone
 
 */
 
+// Retorno do challenges context
 interface ChallengesContextDataProps {
+  username: string;
   level: number;
   levelUp: () => void;
   currentExperience: number;
@@ -46,6 +48,7 @@ interface ChallengesProviderProps {
   Level: number;
   currentExperience: number;
   challengesCompleted: number;
+  username: string;
 }
 
 // Componente que estabelece o contexto
@@ -54,7 +57,8 @@ export function ChallengesProvider({
   ...rest
 }: ChallengesProviderProps) {
   //  Dados que desejamos compartilhar com os componentes
-  const [level, setLevel] = useState(rest.Level ?? 1);
+  const username = rest.username; // Dado vindo do cookie
+  const [level, setLevel] = useState(rest.Level ?? 1); //  ?? se não tiver nenhum level salvo no cookie level = 1
   const [currentExperience, setCurrentExperience] = useState(
     rest.currentExperience ?? 0
   );
@@ -147,6 +151,7 @@ export function ChallengesProvider({
   return (
     <ChallengesContext.Provider
       value={{
+        username,
         level,
         levelUp,
         currentExperience,
