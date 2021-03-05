@@ -1,5 +1,6 @@
 .leaderboardContainer {
   /* border: solid red 2px; */
+
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -14,19 +15,51 @@
 }
 
 .leaderboardContainer table {
-  background-color: rgb(10, 45, 61);
+  /* border: solid red 2px; */
+  border-collapse: separate;
+  width: 100%;
+  border-spacing: 0 2rem;
+  text-align: left;
+  color: var(--text);
 }
 
 .leaderboardContainer table thead {
-  background-color: white;
-  font-size: 0.875rem;
+  font-weight: 700;
+  opacity: 0.5;
 }
 
 .leaderboardContainer table tbody {
-  border-radius: 5px;
-  color: white;
+  background-color: white;
 }
 
-.leaderboardContainer table tbody > tr > td {
+.leaderboardContainer table tbody tr {
+  height: 6rem;
+}
+
+.leaderboardContainer table tbody td:first-child {
+  color: var(--text);
+  width: 4.5rem;
   text-align: center;
+  border-right: solid 1px black;
+
+  font-weight: 500;
+  font-size: 1.5rem;
+  /* line-height: 29px; */
+}
+
+.leaderboardContainer table thead th:nth-child(2),
+.leaderboardContainer table tbody td:nth-child(2) {
+  padding: 0 1.5rem;
+}
+
+.profile {
+  /* border: solid red 2px; */
+  padding-right: 1rem;
+  width: 15rem;
+}
+
+/* Como aproximar os elementos da tabela */
+.leaderboardContainer table tbody td:nth-child(3) {
+}
+.leaderboardContainer table tbody td:last-child {
 }

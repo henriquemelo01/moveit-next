@@ -1,0 +1,105 @@
+.leaderboardContainer {
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  /* border: red solid 2px; */
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.leaderboardContainer strong {
+  color: var(--title);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 2.88rem;
+}
+
+/* Container tabela */
+.leaderboardContainer > div {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* alinhar verticalmente */
+  /* border: red solid 2px; */
+  gap: 1.5rem;
+}
+
+/* Tabela */
+.leaderboardContainer > div > div {
+  width: 100%;
+  display: flex;
+  /* border: solid red 2px; */
+}
+
+.leaderboardContainer > div > div > p {
+  font-size: 0.875rem;
+  font-weight: 700;
+  opacity: 0.5;
+  margin-right: 1rem;
+}
+
+/* USUARIO  */
+.leaderboardContainer > div > div > p:nth-child(2) {
+  margin-left: 0.7rem;
+}
+
+/* Desafios */
+.leaderboardContainer > div > div > p:nth-child(3) {
+  margin-left: 25.8rem;
+}
+
+/* Desafios */
+.leaderboardContainer > div > div > p:nth-child(4) {
+  margin-left: 6.2rem;
+}
+
+/* Parte de baixo da tabela - card container */
+.tableBody {
+  display: flex;
+  align-items: center;
+  /* border: solid red 2px; */
+  /* background-color: white; */
+}
+
+/* Numero */
+.tableBody > div:first-child {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 5rem;
+  margin-right: 0.3rem;
+  height: 100%;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.tableBody > div:last-child {
+  height: 6rem;
+  padding: 0 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.profile {
+  margin-right: 15.94rem;
+}
+
+.tableBody p {
+  margin-right: 4rem;
+}
+
+.tableBody span {
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--blue);
+}

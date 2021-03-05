@@ -16,6 +16,8 @@ import { SideBar } from "../components/SideBar";
 import { useContext, useState } from "react";
 import { SectionContext } from "../contexts/SectionContext";
 import { Leaderboard } from "../components/Leaderboard";
+import { Teste } from "../components/Teste";
+import { UserCard } from "../components/UserCard";
 
 // Essa página é criada pelo servidor do Next, que retorna o HTML,CSS,JS da nossa aplicação (Server side rendering)
 
@@ -59,7 +61,19 @@ export default function Home(props: HomeProps) {
               </CountdownProvider>
             </div>
           )}
-          {currentSection === "leaderboard" && <Leaderboard />}
+          {currentSection === "leaderboard" && (
+            <>
+              <Teste />
+              <UserCard
+                userData={{
+                  username: "luccacazzio",
+                  level: 1,
+                  challengesCompleted: 0,
+                  userExperience: 0,
+                }}
+              />
+            </>
+          )}
         </div>
       </div>
     </ChallengesProvider>

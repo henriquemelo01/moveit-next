@@ -1,5 +1,6 @@
 import { throws } from "assert";
 import styles from "../styles/components/Leaderboard.module.css";
+import Profile from "../components/Profile";
 
 export function Leaderboard() {
   return (
@@ -17,7 +18,7 @@ export function Leaderboard() {
         <tbody>
           <tr>
             <td>1</td>
-            <td>Miniprofile</td>
+            <td className={styles.profile}>Mini profile</td>
             <td>127 completados</td>
             <td>154000 xp</td>
           </tr>

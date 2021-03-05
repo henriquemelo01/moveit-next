@@ -1,0 +1,44 @@
+.profileContainer {
+  display: flex;
+  align-items: center; /*Alinhando os itens verticalmente */
+  justify-content: center;
+  width: 15.625rem;
+  height: 5rem;
+}
+
+/* Foi definido o estilo usando > , uma vez que o Diego usa duas imagens e ele quer pegar apenas a img que é filha de profilecontainer */
+.profileContainer img {
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+}
+
+/* Só tem uma div por isso usa .profileContainer div e não .profileContainer > div */
+.profileContainer div {
+  margin-left: 1rem;
+  /* border: red 2px solid; */
+}
+
+/* Username */
+.profileContainer div strong {
+  display: block;
+  padding-top: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2rem;
+  color: var(--title);
+}
+
+/* Level  + Icon */
+.profileContainer div p {
+  font-size: 1rem;
+  /* border: solid red 2px; */
+  margin-bottom: 1rem;
+  color: var(--title);
+}
+
+.icon {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+  color: green;
+}
