@@ -63,11 +63,12 @@ export default function Home(props: HomeProps) {
           )}
           {currentSection === "leaderboard" && (
             <>
+              {/* Refatorar o código + começar a implementar a modal que será aberta após os 25 minutos - ordenar as divs*/}
               <Teste />
               <UserCard
                 userData={{
                   username: "luccacazzio",
-                  level: 1,
+                  position: 1,
                   challengesCompleted: 0,
                   userExperience: 0,
                 }}

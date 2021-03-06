@@ -4,7 +4,7 @@ import ProfileLeader from "../components/ProfileLeader";
 interface UserCardProps {
   userData: {
     username: string;
-    level: number;
+    position: number;
     challengesCompleted: number;
     userExperience: number;
   };
@@ -15,7 +15,7 @@ export function UserCard({ userData }: UserCardProps) {
     <div className={style.mainContainer}>
       <div>
         <div className={style.cardContainer}>
-          <div>{userData.level}</div>
+          <div>{userData.position}</div>
           <div>
             <div className={style.profile}>
               <ProfileLeader user={userData.username} />
