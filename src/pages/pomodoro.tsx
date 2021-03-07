@@ -37,23 +37,60 @@ export default function Home(props: HomeProps) {
     {
       username: "henriquemelo01",
       challengesCompleted: 120,
-      userExperience: 15000, // Experiencia total obtida
+      level: 30,
+      currentExperience: 150,
     },
     {
       username: "luccacazzio",
       challengesCompleted: 20,
-      userExperience: 2500,
+      level: 4,
+      currentExperience: 65,
     },
     {
       username: "teste",
+      level: 35,
       challengesCompleted: 150,
-      userExperience: 17000,
+      currentExperience: 120,
+    },
+    {
+      username: "teste2",
+      level: 105,
+      challengesCompleted: 150,
+      currentExperience: 120,
     },
   ];
 
+  // Adicionando propriedade posição e userExperience de maneira dinâmica
+
+  // UserExperience = acc.currentExperience + Math.pow((acc.level - 1 + 1) * 4, 2);
+  function calcUserExperience(currentExperience: number, level: number) {
+    if (level === 1) return currentExperience;
+    return currentExperience + Math.pow(level * 4, 2);
+  }
+
+  function addUserExperience(): Array<{
+    userExperience: number;
+    username: string;
+    challengesCompleted: number;
+    level: number;
+    currentExperience: number;
+  }> {
+    const newArr = accounts.map((acc, index) => {
+      const newAcc = {
+        ...acc,
+        userExperience: calcUserExperience(acc.currentExperience, acc.level),
+      };
+      // newAcc.userExperience = calcUserExperiencte(acc.currentExperience, acc.level)
+      return newAcc;
+      Number;
+    });
+
+    return newArr;
+  }
+
   // Função sort do JS: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
   const sortAccArr = function () {
-    const sortedArray = accounts.sort((a, b) => {
+    const sortedArray = addUserExperience().sort((a, b) => {
       if (a.userExperience > b.userExperience) {
         return -1;
       } else if (a.userExperience < b.userExperience) {
@@ -65,6 +102,8 @@ export default function Home(props: HomeProps) {
 
     return sortedArray;
   };
+
+  console.log(calcUserExperience(props.currentExperience, props.Level));
 
   return (
     <ChallengesProvider
@@ -117,6 +156,7 @@ export default function Home(props: HomeProps) {
                           username: acc.username,
                           challengesCompleted: acc.challengesCompleted,
                           userExperience: acc.userExperience,
+                          level: acc.level,
                         }}
                       />
                     );

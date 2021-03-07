@@ -74,7 +74,8 @@
 
 .cardContainer > div:last-child {
   height: 6rem;
-  padding: 0 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -88,7 +89,13 @@
 }
 
 .cardContainer p {
+  /* display: block; */
+  /* border: solid red 2px; */
   margin-right: 4rem;
+}
+
+.cardContainer p:last-child {
+  margin-right: 5rem;
 }
 
 .cardContainer span {

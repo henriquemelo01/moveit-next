@@ -5,9 +5,10 @@ import style from "../styles/components/ProfileLeader.module.css";
 
 interface ProfileProps {
   user: string;
+  userLevel: number;
 }
 
-export default function Profile({ user }: ProfileProps) {
+export default function Profile({ user, userLevel }: ProfileProps) {
   const { level, username } = useContext(ChallengesContext);
   console.log(username);
   return (
@@ -24,7 +25,7 @@ export default function Profile({ user }: ProfileProps) {
         <strong>{user ?? username}</strong>
         <p>
           <GiUpgrade className={style.icon} />
-          Level {level}
+          Level {userLevel ?? level}
         </p>
       </div>
     </div>

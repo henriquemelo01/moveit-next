@@ -7,6 +7,7 @@ interface UserCardProps {
     position: number;
     challengesCompleted: number;
     userExperience: number;
+    level: number;
   };
 }
 
@@ -18,7 +19,10 @@ export function UserCard({ userData }: UserCardProps) {
           <div>{userData.position}</div>
           <div>
             <div className={style.profile}>
-              <ProfileLeader user={userData.username} />
+              <ProfileLeader
+                user={userData.username}
+                userLevel={userData.level}
+              />
             </div>
             <p>
               <span>{userData.challengesCompleted}</span> completados

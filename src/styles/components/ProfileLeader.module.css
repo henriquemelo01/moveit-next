@@ -25,12 +25,14 @@
   padding-top: 1rem;
   font-size: 1.25rem;
   font-weight: 600;
-  line-height: 1.2rem;
+  line-height: 1.7rem;
   color: var(--title);
 }
 
 /* Level  + Icon */
 .profileContainer div p {
+  display: flex; /* Coloquei para não quebrar de linha */
+  width: 6.5rem;
   font-size: 1rem;
   /* border: solid red 2px; */
   margin-bottom: 1rem;

@@ -76,15 +76,15 @@
 
 /* USUARIO  */
 .leaderboardContainer > div > div > p:nth-child(2) {
-  margin-left: 1.7rem; /* */
+  margin-left: 1rem; /* */
 }
 
 /* Desafios */
 .leaderboardContainer > div > div > p:nth-child(3) {
-  margin-left: 25.5rem;
+  margin-left: 27rem;
 }
 
 /* Experiencia */
 .leaderboardContainer > div > div > p:nth-child(4) {
-  margin-left: 4.5rem;
+  margin-left: 5.65rem;
 }
