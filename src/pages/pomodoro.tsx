@@ -31,6 +31,41 @@ interface HomeProps {
 export default function Home(props: HomeProps) {
   const { currentSection } = useContext(SectionContext); // "pomodoro" ou "leaderboard"
   // Por que não esta conseguindo acessar o valor da variavel? Será que é porque a Home não esta dentro de challenges provider
+
+  // Funcionalidade para organizar o array
+  const accounts = [
+    {
+      username: "henriquemelo01",
+      challengesCompleted: 120,
+      userExperience: 15000, // Experiencia total obtida
+    },
+    {
+      username: "luccacazzio",
+      challengesCompleted: 20,
+      userExperience: 2500,
+    },
+    {
+      username: "teste",
+      challengesCompleted: 150,
+      userExperience: 17000,
+    },
+  ];
+
+  // Função sort do JS: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+  const sortAccArr = function () {
+    const sortedArray = accounts.sort((a, b) => {
+      if (a.userExperience > b.userExperience) {
+        return -1;
+      } else if (a.userExperience < b.userExperience) {
+        return 1;
+      } else if (a.userExperience < b.userExperience) {
+        return 0;
+      }
+    });
+
+    return sortedArray;
+  };
+
   return (
     <ChallengesProvider
       username={props.username}
@@ -64,15 +99,30 @@ export default function Home(props: HomeProps) {
           {currentSection === "leaderboard" && (
             <>
               {/* Refatorar o código + começar a implementar a modal que será aberta após os 25 minutos - ordenar as divs*/}
-              <Teste />
-              <UserCard
-                userData={{
-                  username: "luccacazzio",
-                  position: 1,
-                  challengesCompleted: 0,
-                  userExperience: 0,
-                }}
-              />
+              <div className={style.leaderboardContainer}>
+                <strong>Leaderboard</strong>
+                <div>
+                  <div className={style.tableHead}>
+                    <p>POSIÇÃO</p>
+                    <p>USUÁRIO</p>
+                    <p>DESAFIOS</p>
+                    <p>EXPERIÊNCIA</p>
+                  </div>
+
+                  {sortAccArr().map((acc, index) => {
+                    return (
+                      <UserCard
+                        userData={{
+                          position: index + 1,
+                          username: acc.username,
+                          challengesCompleted: acc.challengesCompleted,
+                          userExperience: acc.userExperience,
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
             </>
           )}
         </div>
