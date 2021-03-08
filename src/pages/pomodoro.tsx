@@ -35,16 +35,16 @@ export default function Home(props: HomeProps) {
   // Funcionalidade para organizar o array
   const accounts = [
     {
-      username: "henriquemelo01",
-      challengesCompleted: 120,
-      level: 30,
-      currentExperience: 150,
+      username: props.username,
+      challengesCompleted: props.challengesCompleted,
+      level: props.Level,
+      currentExperience: props.currentExperience,
     },
     {
       username: "luccacazzio",
-      challengesCompleted: 20,
-      level: 4,
-      currentExperience: 65,
+      challengesCompleted: 0,
+      level: 1,
+      currentExperience: 0,
     },
     {
       username: "teste",
