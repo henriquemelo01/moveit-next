@@ -25,7 +25,7 @@ export function UserCard({ userData }: UserCardProps) {
               />
             </div>
             <p>
-              <span>{userData.challengesCompleted}</span> completados
+              <span>{userData.challengesCompleted} </span> completados
             </p>
             <p>
               <span>{userData.userExperience}</span>xp

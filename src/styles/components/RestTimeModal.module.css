@@ -1,0 +1,91 @@
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(242, 243, 245, 0.8);
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  width: 100%;
+  max-width: 450px;
+  padding: 0 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.25rem;
+
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  line-height: 1.8rem;
+  /* position: relative; */
+}
+
+.modalContainer header {
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+
+  border-bottom: var(--gray-line) 1px solid;
+  width: 100%;
+  padding-bottom: 0.8rem;
+}
+
+.modalContainer main {
+  margin-bottom: 1rem;
+}
+
+.modalContainer main strong {
+  color: var(--text);
+  font-weight: 500;
+  display: inline-block;
+
+  margin-bottom: 1.5rem;
+}
+
+.modalContainer main img {
+  width: 100%;
+}
+
+.modalContainer footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.modalContainer footer button {
+  height: 3rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  padding: 0 1rem;
+}
+
+.confirmar {
+  background-color: var(--green);
+}
+
+.cancelar {
+  background-color: var(--red);
+}

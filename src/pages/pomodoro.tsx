@@ -18,6 +18,7 @@ import { SectionContext } from "../contexts/SectionContext";
 import { Leaderboard } from "../components/Leaderboard";
 import { Teste } from "../components/Teste";
 import { UserCard } from "../components/UserCard";
+import { RestTimeModal } from "../styles/components/RestTimeModal";
 
 // Essa página é criada pelo servidor do Next, que retorna o HTML,CSS,JS da nossa aplicação (Server side rendering)
 
@@ -167,6 +168,7 @@ export default function Home(props: HomeProps) {
           )}
         </div>
       </div>
+      <RestTimeModal />
     </ChallengesProvider>
   );
 }
