@@ -18,6 +18,12 @@ interface CountdownContextDataProps {
   hasFinished: boolean; // Timer finalizou a contagem
   startCountdown: () => void;
   resetCountdown: () => void;
+  isRestTimeOpen: boolean;
+  showRestModal: () => void;
+  closeRestModal: () => void;
+  wasTheRestAccepted: boolean;
+  startRestCountDown: () => void;
+  resetRestCountdown: () => void;
 }
 
 // Tipagem do props que será passado como parametro para o componente CountdownProvider
@@ -34,9 +40,22 @@ let countdownTimeout: NodeJS.Timeout;
 // OBS: children -> Elemento que irá ter acesso ao context
 export function CountdownProvider({ children }: CountdownProviderProps) {
   // Challenge context Data: Como o useEffet utiliza o metodo startNewChallenge vindo do contexto, devemos "importa-lo"
-  const { startNewChallenge } = useContext(ChallengesContext);
+  const { startNewChallenge, resetChallenge } = useContext(ChallengesContext);
 
-  const [time, setTime] = useState(25 * 60);
+  // Rest time Modal
+  const [isRestTimeOpen, setIsRestTimeOpen] = useState(false); // false
+  const [wasTheRestAccepted, setWasTheRestAccepted] = useState(false);
+
+  const showRestModal = function () {
+    setIsRestTimeOpen(true);
+  };
+
+  const closeRestModal = function () {
+    setIsRestTimeOpen(false);
+  };
+
+  // Timer
+  const [time, setTime] = useState(0.1 * 60);
   const [isActive, setIsActive] = useState(false); // false
   const [hasFinished, setHasFinished] = useState(false);
 
@@ -50,9 +69,33 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
 
   const resetCountdown = function () {
     setIsActive(false);
-    setHasFinished(false); // coloquei agora
+    setHasFinished(false);
     clearTimeout(countdownTimeout);
-    setTime(25 * 60);
+    setTime(0.1 * 60);
+  };
+
+  const startRestCountDown = function () {
+    setHasFinished(false);
+    clearTimeout(countdownTimeout);
+    setTime(0.2 * 60);
+    setWasTheRestAccepted(true);
+  };
+
+  const resetRestCountdown = function () {
+    setWasTheRestAccepted(false);
+    // Se passou o tempo de descanso e o usuario não aceitou o desafio, o mesmo sera resetado, assim este não recebe o xp do desafio
+    resetChallenge();
+    resetCountdown();
+  };
+
+  const triggerRestCountdownNoti = function () {
+    new Audio("/notification.mp3").play();
+
+    if (Notification.permission === "granted") {
+      new Notification("O tempo de descanso terminou !! ⏰", {
+        body: `Hora de dedicar ao trabalho 🤓📖💻 !!`,
+      });
+    }
   };
 
   // Toda vez que o valor de active mudar executa a função.
@@ -62,8 +105,16 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
         setTime(time - 1);
       }, 1000);
     } else if (isActive && time === 0) {
+      if (wasTheRestAccepted) {
+        triggerRestCountdownNoti();
+        resetRestCountdown();
+        return;
+      }
+
+      // Usuario não aceitou tempo de descanso
       setHasFinished(true);
       startNewChallenge();
+      showRestModal();
     }
   }, [isActive, time]); // Como time muda a cada 1 segundo a função é disparada a cada segundo, até que time pare de mudar.
 
@@ -76,6 +127,12 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
         hasFinished,
         startCountdown,
         resetCountdown,
+        isRestTimeOpen,
+        showRestModal,
+        closeRestModal,
+        wasTheRestAccepted,
+        startRestCountDown,
+        resetRestCountdown,
       }}
     >
       {children} {/* Todos elementos que terão acesso ao context */}

@@ -8,15 +8,19 @@ export default function ChallengeBox() {
   const { activeChallenge, resetChallenge, completedChallenge } = useContext(
     ChallengesContext
   );
-  const { resetCountdown } = useContext(CountdownContext);
+  const { resetCountdown, wasTheRestAccepted } = useContext(CountdownContext);
 
   const handleFailedButton = function () {
     resetChallenge();
+    // Se o tempo de descaso foi aceito não reseta o countdown
+    if (wasTheRestAccepted) return;
     resetCountdown();
   };
 
   const handleSucceededButton = function () {
     completedChallenge();
+    // Se o tempo de descaso foi aceito não reseta o countdown
+    if (wasTheRestAccepted) return;
     resetCountdown();
   };
 

@@ -29,18 +29,42 @@
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
   border-radius: 0.5rem;
   line-height: 1.8rem;
-  /* position: relative; */
+
+  position: relative;
 }
 
 .modalContainer header {
-  color: var(--blue);
-  font-weight: 600;
-  font-size: 1.8rem;
   margin-bottom: 1rem;
 
   border-bottom: var(--gray-line) 1px solid;
   width: 100%;
   padding-bottom: 0.8rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer header span {
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.closeIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  background-color: white;
+
+  position: absolute;
+  right: 1.25rem;
+  top: 0.85rem;
+
+  font-size: 1.5rem;
+  color: var(--text);
 }
 
 .modalContainer main {

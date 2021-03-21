@@ -17,6 +17,8 @@ export default function Countdown() {
     hasFinished,
     startCountdown,
     resetCountdown,
+    wasTheRestAccepted,
+    resetRestCountdown,
   } = useContext(CountdownContext);
 
   // OBS: A formatação não faz parte da regra de negocio, ou seja, ela não faz parte de como a aplicação funciona em si, mas como é visualizada. Só faz parte do componente Countdown em sí
@@ -46,13 +48,25 @@ export default function Countdown() {
       ) : (
         <>
           {isActive ? (
-            <button
-              className={`${style.btnCountdown} ${style.btnCountdownActive}`}
-              onClick={resetCountdown}
-            >
-              Abandonar ciclo
-              <MdClose className={style.icon} />
-            </button>
+            !wasTheRestAccepted ? (
+              <button
+                className={`${style.btnCountdown} ${style.btnCountdownActive}`}
+                onClick={resetCountdown}
+              >
+                Abandonar ciclo
+                <MdClose className={style.icon} />
+              </button>
+            ) : (
+              <button
+                className={`${style.btnCountdown} ${style.btnCountdownActiveRest}`}
+                onClick={() => {
+                  resetRestCountdown();
+                }}
+              >
+                Descanso
+                <MdClose className={style.icon} />
+              </button>
+            )
           ) : (
             <button className={style.btnCountdown} onClick={startCountdown}>
               Iniciar um ciclo

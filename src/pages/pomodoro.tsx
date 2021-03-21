@@ -133,6 +133,7 @@ export default function Home(props: HomeProps) {
                     <ChallengeBox />
                   </div>
                 </section>
+                <RestTimeModal />
               </CountdownProvider>
             </div>
           )}
@@ -168,7 +169,6 @@ export default function Home(props: HomeProps) {
           )}
         </div>
       </div>
-      <RestTimeModal />
     </ChallengesProvider>
   );
 }
