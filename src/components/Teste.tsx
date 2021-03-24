@@ -16,9 +16,7 @@ export function Teste({ ...rest }) {
         <div className={style.tableBody}>
           <div>1</div>
           <div>
-            <div className={style.profile}>
-              <ProfileLeader />
-            </div>
+            <div className={style.profile}>{/* <ProfileLeader /> */}</div>
             <p>
               <span>127</span> completados
             </p>

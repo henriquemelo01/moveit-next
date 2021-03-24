@@ -55,7 +55,7 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
   };
 
   // Timer
-  const [time, setTime] = useState(0.1 * 60);
+  const [time, setTime] = useState(25 * 60);
   const [isActive, setIsActive] = useState(false); // false
   const [hasFinished, setHasFinished] = useState(false);
 
@@ -71,13 +71,13 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
     setIsActive(false);
     setHasFinished(false);
     clearTimeout(countdownTimeout);
-    setTime(0.1 * 60);
+    setTime(25 * 60);
   };
 
   const startRestCountDown = function () {
     setHasFinished(false);
     clearTimeout(countdownTimeout);
-    setTime(0.2 * 60);
+    setTime(5 * 60);
     setWasTheRestAccepted(true);
   };
 

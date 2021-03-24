@@ -9,6 +9,25 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Funcionalidades que foram adicionadas a aplicação original.
+
+<ul>
+    <li>Landing Page da aplicação </li>
+    <li>Menu de Navegação</li>
+    <li>Leaderboard </li>
+    <li>Funcionalidade de Tempo de Descanso</li>
+</ul>
+
+## Tecnologias utilizadas 🚀
+
+<ul>
+    <li>Typescript </li>
+    <li>React.js</li>
+    <li>React Icons</li>
+    <li>Next.js </li>
+    <li>Js Cookies</li>
+</ul>
+
 ## Getting Started
 
 First, run the development server:
