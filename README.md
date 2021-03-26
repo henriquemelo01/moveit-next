@@ -4,7 +4,7 @@
 
 <div >
     <h2>👀<b>Overview</b></h2><br>
-    <img src = "moveit-gif.gif" align = "center">
+    <img src = "pomodoro-v1.gif" align = "center">
 </div>
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
